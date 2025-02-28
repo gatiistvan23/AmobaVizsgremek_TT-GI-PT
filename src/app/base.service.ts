@@ -7,6 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class BaseService {
    api="https://us-central1-soterfrontend.cloudfunctions.net/api/"
+   apiUrl="https://g.co/kgs/jrXnpq3"
    private gameSub = new BehaviorSubject<any>(null)
    idozito:any
    en:any
@@ -53,4 +54,25 @@ export class BaseService {
   setStudent(student:any){
     this.student = student
   }
+  getStudent(){    
+    this.http.get(this.apiUrl+"?format=json").subscribe(
+      (res:any)=>{
+        this.student = res
+      }
+
+    )
+    this.http.get(this.joinGame()+this.api).forEach(
+      (res:any)=>{
+        this.getStatus(res.gameId).subscribe(
+          {
+            next:(res)=>{
+            this.student = res
+            },
+            error:(err)=>{console.log(err)}
+          }
+        )
+      }
+    )
+  }
+  
 }

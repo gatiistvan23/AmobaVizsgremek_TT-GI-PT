@@ -1,13 +1,18 @@
 <p>race works!</p>
-<div class="container">
+<div class="container" *ngIf="race">
     <div class="row">
         <div class="col">
             {{race|json}}
-        </div>    
+        </div>
     </div>
     <div class="row">
         <div class="col">
             {{student|json}} ki nyer meg amőba versenyt?
         </div>
     </div>
+    <ng-template>
+        <div (click)="getStudent()" class="link">
+            <a routerLinkActive="active" *ngFor="let student of race.res.players" [routerLinkActiveOptions]="{exact: true}" routerLink="game">Amoba</a>
+        </div>
+    </ng-template>
 </div>

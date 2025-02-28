@@ -26,5 +26,23 @@ export class RaceComponent {
       }
     )
   }
+  reset(){
+    this.base.getGame().subscribe(
+      (res)=>{
+        this.race = res
+      }
+    )
+  }
+  getStudent(): any {
+    this.base.getGame().subscribe(
+      (res)=>{
+        this.getStudent().subscribe(
+          (res:any)=>{
+            this.student=res
+          }
+          )
+        }
+      )
+  } 
 
 }
