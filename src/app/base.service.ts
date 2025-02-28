@@ -10,6 +10,7 @@ export class BaseService {
    private gameSub = new BehaviorSubject<any>(null)
    idozito:any
    en:any
+   student:any
 
   constructor(private http:HttpClient) { }
   getGame(){
@@ -48,5 +49,8 @@ export class BaseService {
     this.http.post(this.api+"game/move", step).subscribe(
       (res)=>console.log(res)
     )
+  }
+  setStudent(student:any){
+    this.student = student
   }
 }

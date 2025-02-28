@@ -8,12 +8,14 @@ import { GameComponent } from './game/game.component';
 import { InitComponent } from './init/init.component';
 import { provideHttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { RaceComponent } from './race/race.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GameComponent,
-    InitComponent
+    InitComponent,
+    RaceComponent
   ],
   imports: [
     BrowserModule,
