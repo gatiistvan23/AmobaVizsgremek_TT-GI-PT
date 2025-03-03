@@ -1,6 +1,21 @@
-.col{
-    width: 100px;
-    height: 100px;
+.col {
+    width: 250px;
+    height: 500px;
     background-color: lightslategray;
     border: 1px solid black;
+    border-top-left-radius: 5%;
+    border-top-right-radius: 5%;
+    border-bottom-left-radius: 5%;
+    border-bottom-right-radius: 5%;            
 }
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 10px;    
+}
+.container {
+    background-color: lightskyblue;
+}
+
+

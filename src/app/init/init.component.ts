@@ -20,4 +20,7 @@ export class InitComponent {
   init(){
     this.base.joinGame()
   }
+  race(){
+    this.base.joinGame()
+  }
 }

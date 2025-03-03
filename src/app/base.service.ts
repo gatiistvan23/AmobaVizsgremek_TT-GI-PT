@@ -13,66 +13,64 @@ export class BaseService {
    en:any
    student:any
 
-  constructor(private http:HttpClient) { }
-  getGame(){
-    return this.gameSub
-  }
-  setGame(game:any){
-    this.gameSub.next(game)
-  }
-  joinGame(){
-    this.http.get(this.api+"game/join").subscribe(
-      (res:any)=>{  
-      this.en=res  
-      this.gameSub.next(null)
-      clearInterval(this.idozito)
-      this.idozito=setInterval( ()=>
-      {
-        this.getStatus(res.gameId).subscribe(
-          {
-            next:(res)=>{
-                this.gameSub.next({res, ...this.en})
-            },
-            error:(err)=>{console.log(err)}
-          }
-        )},500)      
-      }
-    )
-  }
-
-  getStatus(gameId:any){
-    return this.http.get(this.api+`game/state?gameId=${gameId}`)
-   
-    
-  }
-
-  newStep(step:any){
-    this.http.post(this.api+"game/move", step).subscribe(
-      (res)=>console.log(res)
-    )
-  }
-  setStudent(student:any){
-    this.student = student
-  }
-  getStudent(){    
-    this.http.get(this.apiUrl+"?format=json").subscribe(
-      (res:any)=>{
-        this.student = res
-      }
-
-    )
-    this.http.get(this.joinGame()+this.api).forEach(
-      (res:any)=>{
-        this.getStatus(res.gameId).subscribe(
-          {
-            next:(res)=>{
-            this.student = res
-            },
-            error:(err)=>{console.log(err)}
-          }
-        )
-      }
-    )
-  }
+   constructor(private http:HttpClient) { }
+   getGame(){
+     return this.gameSub
+   }
+   setGame(game:any){
+     this.gameSub.next(game)
+   }
+   joinGame(){
+     this.http.get(this.api+"game/join").subscribe(
+       (res:any)=>{  
+       this.en=res  
+       this.gameSub.next(null)
+       clearInterval(this.idozito)
+       this.idozito=setInterval( ()=>
+       {
+         this.getStatus(res.gameId).subscribe(
+           {
+             next:(res)=>{
+                 this.gameSub.next({res, ...this.en})
+             },
+             error:(err)=>{console.log(err)}
+           }
+         )},500)      
+       }
+     )
+   }
+ 
+   getStatus(gameId:any){
+     return this.http.get(this.api+`game/state?gameId=${gameId}`)   
+     
+   }
+ 
+   newStep(step:any){
+     this.http.post(this.api+"game/move", step).subscribe(
+       (res)=>console.log(res)
+     )
+   }
+   setStudent(student:any){
+     this.student = student
+   }
+   getStudent(){    
+     this.http.get(this.apiUrl+"?format=json").subscribe(
+       (res:any)=>{
+         this.student = res
+       }
+     )
+     this.http.get(this.joinGame()+this.api).forEach(
+       (res:any)=>{
+         this.getStatus(res.gameId).subscribe(
+           {
+             next:(res)=>{
+             this.student = res
+             },
+             error:(err)=>{console.log(err)}
+           }
+         )
+       }
+     )
+   }
   
 }

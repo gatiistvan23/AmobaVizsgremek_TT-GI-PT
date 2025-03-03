@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { BaseService } from '../base.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-race',
@@ -10,7 +11,7 @@ export class RaceComponent {
   race:any
   student:any
 
-  constructor(private base:BaseService){
+  constructor(private base:BaseService, private router:Router){
     this.base.getGame().subscribe(
       (res)=>{
         this.race=res
@@ -43,6 +44,7 @@ export class RaceComponent {
           )
         }
       )
+      this.router.navigate(['/race'])
   } 
 
 }

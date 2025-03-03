@@ -1,25 +1,27 @@
 <p>{{game|json}}</p>
-<div class="row">
-    <div (click)="lepes(0,0)" class="col">{{game.res.board.row0.col0}}</div>
-    <div (click)="lepes(0,1)" class="col">{{game.res.board.row0.col1}}</div>
-    <div (click)="lepes(0,2)" class="col">{{game.res.board.row0.col2}}</div>
-</div>
-<div class="row">
-    <div (click)="lepes(1,0)" class="col">{{game.res.board.row1.col0}}</div>
-    <div (click)="lepes(1,1)" class="col">{{game.res.board.row1.col1}}</div>
-    <div (click)="lepes(1,2)" class="col">{{game.res.board.row1.col2}}</div>
-</div>
-<div class="row">
-    <div (click)="lepes(2,0)" class="col">{{game.res.board.row2.col0}}</div>
-    <div (click)="lepes(2,1)" class="col">{{game.res.board.row2.col1}}</div>
-    <div (click)="lepes(2,2)" class="col">{{game.res.board.row2.col2}}</div>
-</div>
-<ng-container *ngIf="game.res.winner">
-    <ng-container *ngIf="game.res.winner==game.role; else loser">
-        <h1>Győzelem!</h1>
+<div class="container">
+    <div class="row">
+        <div (click)="lepes(0,0)" class="col">{{game.res.board.row0.col0}}</div>
+        <div (click)="lepes(0,1)" class="col">{{game.res.board.row0.col1}}</div>
+        <div (click)="lepes(0,2)" class="col">{{game.res.board.row0.col2}}</div>
+    </div>
+    <div class="row">
+        <div (click)="lepes(1,0)" class="col">{{game.res.board.row1.col0}}</div>
+        <div (click)="lepes(1,1)" class="col">{{game.res.board.row1.col1}}</div>
+        <div (click)="lepes(1,2)" class="col">{{game.res.board.row1.col2}}</div>
+    </div>
+    <div class="row">
+        <div (click)="lepes(2,0)" class="col">{{game.res.board.row2.col0}}</div>
+        <div (click)="lepes(2,1)" class="col">{{game.res.board.row2.col1}}</div>
+        <div (click)="lepes(2,2)" class="col">{{game.res.board.row2.col2}}</div>
+    </div>
+    <ng-container *ngIf="game.res.winner">
+        <ng-container *ngIf="game.res.winner==game.role; else loser">
+            <h1>Győzelem!</h1>
+        </ng-container>
+        <ng-template #loser>
+            <h1>Vesztettünk, valamelyik diák nem is olyan sikerül!!</h1>
+        </ng-template>
     </ng-container>
-    <ng-template #loser>
-        <h1>Vesztettünk, valamelyik diák nem is olyan sikerül!!</h1>
-    </ng-template>
-</ng-container>
-<button *ngIf="game.res.winner" routerLink="init" >Új Játék</button> 
+    <button *ngIf="game.res.winner" routerLink="init" >Új Játék</button> 
+    </div>
